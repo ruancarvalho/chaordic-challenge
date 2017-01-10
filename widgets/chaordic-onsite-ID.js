@@ -1,9 +1,15 @@
+/**
+ * 
+ */
 
-var url = "http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
+var serviceURL = "http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
+var stylesURL = "//localhost/chaordic-challenge/css/chaordic-onsite.css";
 
 var ONSITE = ONSITE || {};
 
 ONSITE.init = function(data) {
+
+	fetchStyles(stylesURL);
 
 	var widget = document.getElementById('chaordic-onsite-UID');
 	widget.className = 'chaordic chaordic-onsite';
@@ -13,7 +19,7 @@ ONSITE.init = function(data) {
 	);
 	
 	widget.appendChild(
-		ONSITE.recommendationSection(data.recommendation)
+		ONSITE.recommendationSection(data.recommendation, data.widget.size)
 	);
 }
 
@@ -37,7 +43,7 @@ ONSITE.referenceSection = function(reference) {
 	return referenceSection;
 }
 
-ONSITE.recommendationSection = function(recommendation) {
+ONSITE.recommendationSection = function(recommendation, limit) {
 
 	if (typeof recommendation === 'undefined')
 		return null;
@@ -52,9 +58,10 @@ ONSITE.recommendationSection = function(recommendation) {
 	var recommendationList = document.createElement('ul');
 	var recommendationItem;
 
-	for (var i=0; i < recommendation.length; i++) {
+	for (var i=0; i < 5; i++) {
 		
 		recommendationItem = document.createElement('li');
+		recommendation.id = recommendation[i].businessId;
 		recommendationItem.appendChild(ONSITE.createProduct(recommendation[i]));
 		recommendationList.appendChild(recommendationItem)
 
@@ -68,42 +75,59 @@ ONSITE.recommendationSection = function(recommendation) {
 
 ONSITE.createProduct = function(product) {
 
-	var productWrapper = document.createElement('a');
-	productWrapper.href=product.detailUrl;
-	productWrapper.target='_blank';
+	var productLink = document.createElement('a');
+	productLink.href=product.detailUrl;
+	productLink.target='_blank';
 
-	var productItem = document.createElement('div');
-	productItem.id = product.businessId; 
-	productItem.className = 'chaordic-product';
+	var productWrapper = document.createElement('div');
+	productWrapper.id = product.businessId; 
+	productWrapper.className = 'chaordic-product';
 
+		var thumbnail = document.createElement('figure');
 		var imageName = document.createElement('img');
 		imageName.src = product.imageName;
+		thumbnail.appendChild(imageName);
+
 
 		var name = document.createElement('p');
-		name.className = 'chaordic-item-title';
-		name.innerHTML = product.name;
+		name.className = 'chaordic-product-title';
+		name.innerHTML = product.name.substring(0, 80) + '...';
 
-		var oldPrice = document.createElement('p');
-		oldPrice.className = 'chaordic-item-oldprice';
-		oldPrice.innerHTML = product.oldPrice;
+		if (product.oldPrice != null ) {
+			var oldPrice = document.createElement('p');
+			oldPrice.className = 'chaordic-product-oldprice';
+			oldPrice.innerHTML = 'De: ' + product.oldPrice;
+		}
 
 		var price = document.createElement('p');
-		price.className = 'chaordic-item-price';
-		price.innerHTML = product.price;
+		price.className = 'chaordic-product-price';
+		price.innerHTML = 'Por: <strong>' + product.price + '</strong>';
 
 		var productInfo = document.createElement('p');
-		productInfo.className = 'chaordic-item-title';
+		productInfo.className = 'chaordic-product-info';
 		productInfo.innerHTML = product.productInfo.paymentConditions;
 
-		productItem.appendChild(imageName);
-		productItem.appendChild(name);
-		productItem.appendChild(oldPrice);
-		productItem.appendChild(price);
-		productItem.appendChild(productInfo);
+	productWrapper.appendChild(thumbnail);
+	productWrapper.appendChild(name);
+	if (product.oldPrice) 
+		productWrapper.appendChild(oldPrice);
+	productWrapper.appendChild(price);
+	productWrapper.appendChild(productInfo);
 
-	productWrapper.appendChild(productItem);
+	productLink.appendChild(productWrapper);
 
-	return productWrapper;
+	return productLink;
+}
+
+function fetchStyles(url) {
+	var head = document.head;
+	var link = document.createElement('link');
+
+	link.setAttribute('href', url);
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	link.media = "screen,print";
+	head.appendChild(link);
 }
 
 /**
@@ -112,7 +136,7 @@ ONSITE.createProduct = function(product) {
  * 
  * @param  {string} url - service address
   */
-function getJSONP(url) {
+function fetchJSONP(url) {
 	var head = document.head;
 	var script = document.createElement('script');
 
@@ -135,6 +159,6 @@ function X(response) {
 
 (function(){
 
-	getJSONP(url);
+	fetchJSONP(serviceURL);
 
 })();

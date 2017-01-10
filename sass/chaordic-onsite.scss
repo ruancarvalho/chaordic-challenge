@@ -1,0 +1,139 @@
+@import "variables";
+@import "mixins";
+/*--------------------------------------------------------------
+# Normalize
+--------------------------------------------------------------*/
+@import "normalize";
+
+body {
+  font: $base-font-size $base-font-family;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+.container {
+	margin: 0 auto;
+	width: 1170px;
+}
+
+.chaordic-onsite {
+	background: url('../img/chaordic-onsite-top.jpg') repeat-x top;
+	border-radius: $widget-border-radius;
+	border: $widget-border;
+	box-shadow: $widget-box-shadow;
+	display: flex;
+	overflow: hidden;
+	padding-bottom: 30px;
+	position: relative;
+	width: $widget-width;
+
+	h3 {
+		color: $widget-header-color;
+		font-family: $base-font-family;
+		font-size: $widget-header-font-size;
+		font-weight: 400;
+		height: $widget-header-height;
+		line-height: $widget-header-height;
+		margin: 0 10px;
+	}
+
+	&:after {
+		background: linear-gradient($white, $blue-soft-2);
+		bottom: 0;
+		content: '';
+		height: 30px;
+		left: 0;
+		position: absolute;
+		width: 100%;
+		z-index: 10;
+	}
+}
+
+.chaordic-product {
+
+	max-width: 170px;
+
+	figure {
+		background: $white;
+		border: 2px solid #fff;
+		margin: 4px 5px 10px 5px;
+		padding: 0;
+		text-align: center;
+		width: 156px;
+	
+		img {
+			display: block;	
+			margin: 0 auto;
+			text-align: center;
+		}
+	}
+
+	p {
+		color: $product-describe-color;
+		@include font-size(1.1);
+		margin: 5px 10px;
+
+		&.chaordic-product-title  {
+		    margin-bottom: 5px;
+			overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: normal;
+		}
+
+		&.chaordic-product-price {
+			color: $product-price-color;
+			@include font-size(1.2);
+			font-family: $price-font-family;
+
+			strong {
+				@include font-size(1.4);
+				font-weight: 900;
+			}
+		}
+
+		&.chaordic-product-info {
+			color: $product-price-color;
+			font-weight: bolder;
+		}
+	}
+}
+
+.chaordic-reference {
+    
+    .chaordic-product {
+      content: '';
+      border-right: 1px solid $grey;
+    }
+  }
+
+.chaordic-recommendation {
+
+	ul {
+		list-style: none;
+	    margin: 0;
+	    overflow: hidden;
+	    padding: 10px 0;
+
+		li {
+			//display: inline-block;
+			float: left;
+			padding: 0px;
+			transition: background 0.8s ease-in-out;
+			vertical-align: top;
+			zoom: 1;
+			*display: inline; // hack to ie
+
+			&:hover {
+
+		      background: linear-gradient($blue, $blue-soft);
+		      .product-thumbnail {
+		        border: 2px solid #BDD0E0;
+		      }
+		    }
+		}
+	}
+}
+
