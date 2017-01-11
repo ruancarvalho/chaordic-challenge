@@ -1,8 +1,8 @@
 /**
- * 
+ * O desafio consiste na construção de uma vitrine, em javascript puro e sem frameworks, do Chaordic OnSite que solicita as informações do produto referência e da lista de produtos recomendados com paginação de um serviço remoto.
  */
 
-var serviceURL = "//roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
+var serviceURL = "https://roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
 var stylesURL = "css/chaordic-onsite.css";
 var carouselURL = "js/chaordic-carousel.js"
 
@@ -81,7 +81,7 @@ ONSITE.recommendationSection = function(recommendation, limit) {
 	carouselWrapper.appendChild(ONSITE.createCarouselControl('right', 'Próximo'));
 
 	recommendationSection.appendChild(carouselWrapper);
-	
+
 	return recommendationSection;
 }
 
@@ -171,7 +171,7 @@ function fetchCarousel(url) {
 }
 
 /**
- * Script injection to make a remote AJAX call using JSONP
+ * Script injection to make a remote AJAX call using the JSONP
  * from Chaordic Systems
  * 
  * @param  {string} url - service address
