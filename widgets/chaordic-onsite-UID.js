@@ -1,8 +1,10 @@
 /**
- * O desafio consiste na construção de uma vitrine, em javascript puro e sem frameworks, do Chaordic OnSite que solicita as informações do produto referência e da lista de produtos recomendados com paginação de um serviço remoto.
+ * O desafio consiste na construção de uma vitrine, em javascript puro e sem 
+ * frameworks, do Chaordic OnSite que solicita as informações do produto referência 
+ * e da lista de produtos recomendados com paginação de um serviço remoto.
  */
 
-var serviceURL = "http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
+var serviceURL = "https://roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
 var stylesURL = "css/chaordic-onsite.css";
 var carouselURL = "js/chaordic-carousel.js"
 
