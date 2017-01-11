@@ -2,14 +2,16 @@
  * 
  */
 
-var serviceURL = "http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
-var stylesURL = "//localhost/chaordic-challenge/css/chaordic-onsite.css";
+var serviceURL = "//roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
+var stylesURL = "css/chaordic-onsite.css";
+var carouselURL = "js/chaordic-carousel.js"
 
 var ONSITE = ONSITE || {};
 
 ONSITE.init = function(data) {
 
 	fetchStyles(stylesURL);
+	fetchCarousel(carouselURL);
 
 	var widget = document.getElementById('chaordic-onsite-UID');
 	widget.className = 'chaordic chaordic-onsite';
@@ -55,21 +57,31 @@ ONSITE.recommendationSection = function(recommendation, limit) {
 	referenceTitle.className='chaordic-title';	
 	referenceTitle.innerHTML='e talvez se interesse por:';
 
-	var recommendationList = document.createElement('ul');
-	var recommendationItem;
+	var carouselWrapper = ONSITE.createCarousel();
 
-	for (var i=0; i < 5; i++) {
+	var recommendationList = document.createElement('ul');
+	recommendationList.className='carousel-inner';
+
+	var recommendationItem;
+	for (var i=0; i < limit; i++) {
 		
 		recommendationItem = document.createElement('li');
-		recommendation.id = recommendation[i].businessId;
-		recommendationItem.appendChild(ONSITE.createProduct(recommendation[i]));
-		recommendationList.appendChild(recommendationItem)
+		recommendationItem.id = 'slide' + i;
+		recommendationItem.className='slide';
 
+		recommendationItem.appendChild(ONSITE.createProduct(recommendation[i]));
+		
+		recommendationList.appendChild(recommendationItem)
 	}
 
 	recommendationSection.appendChild(referenceTitle);
-	recommendationSection.appendChild(recommendationList);
- 
+	
+	carouselWrapper.appendChild(recommendationList);
+	carouselWrapper.appendChild(ONSITE.createCarouselControl('left', 'Anterior'));
+	carouselWrapper.appendChild(ONSITE.createCarouselControl('right', 'Próximo'));
+
+	recommendationSection.appendChild(carouselWrapper);
+	
 	return recommendationSection;
 }
 
@@ -84,6 +96,7 @@ ONSITE.createProduct = function(product) {
 	productWrapper.className = 'chaordic-product';
 
 		var thumbnail = document.createElement('figure');
+		thumbnail.className = "chaordic-product-thumb"
 		var imageName = document.createElement('img');
 		imageName.src = product.imageName;
 		thumbnail.appendChild(imageName);
@@ -105,7 +118,7 @@ ONSITE.createProduct = function(product) {
 
 		var productInfo = document.createElement('p');
 		productInfo.className = 'chaordic-product-info';
-		productInfo.innerHTML = product.productInfo.paymentConditions;
+		productInfo.innerHTML = product.productInfo.paymentConditions + "<br><span>sem juros<span>";
 
 	productWrapper.appendChild(thumbnail);
 	productWrapper.appendChild(name);
@@ -119,6 +132,24 @@ ONSITE.createProduct = function(product) {
 	return productLink;
 }
 
+ONSITE.createCarousel = function() {
+
+	var wrapper = document.createElement('div'); 
+	wrapper.className='carousel';
+
+	return wrapper;
+}
+
+ONSITE.createCarouselControl = function(type, text) {
+
+	var control = document.createElement('a'); 
+	control.className='carousel-control ' + type;
+	control.href='#';
+	control.text=text;
+
+	return control;
+}
+
 function fetchStyles(url) {
 	var head = document.head;
 	var link = document.createElement('link');
@@ -128,6 +159,15 @@ function fetchStyles(url) {
 	link.rel = "stylesheet";
 	link.media = "screen,print";
 	head.appendChild(link);
+}
+
+function fetchCarousel(url) {
+	var head = document.head;
+	var script = document.createElement('script');
+
+	script.setAttribute('src', url);
+
+	head.appendChild(script);
 }
 
 /**

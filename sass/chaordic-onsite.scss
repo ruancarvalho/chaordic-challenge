@@ -83,13 +83,18 @@ a {
 		    white-space: normal;
 		}
 
+		&.chaordic-product-oldprice {
+			color: $black;
+		}
+
 		&.chaordic-product-price {
 			color: $product-price-color;
 			@include font-size(1.2);
 			font-family: $price-font-family;
+			line-height: 1em;
 
 			strong {
-				@include font-size(1.4);
+				@include font-size(1.5);
 				font-weight: 900;
 			}
 		}
@@ -97,6 +102,10 @@ a {
 		&.chaordic-product-info {
 			color: $product-price-color;
 			font-weight: bolder;
+
+			span {
+				font-weight: normal;
+			}
 		}
 	}
 }
@@ -104,17 +113,18 @@ a {
 .chaordic-reference {
     
     .chaordic-product {
-      content: '';
-      border-right: 1px solid $grey;
+    	border-right: 1px solid $grey;
+		padding: 0 10px;
     }
   }
 
 .chaordic-recommendation {
 
+	width: 100%;
+
 	ul {
 		list-style: none;
 	    margin: 0;
-	    overflow: hidden;
 	    padding: 10px 0;
 
 		li {
@@ -127,13 +137,14 @@ a {
 			*display: inline; // hack to ie
 
 			&:hover {
-
 		      background: linear-gradient($blue, $blue-soft);
-		      .product-thumbnail {
-		        border: 2px solid #BDD0E0;
-		      }
+
+				.chaordic-product-thumb {
+					border: 2px solid #BDD0E0;
+				}
 		    }
 		}
 	}
 }
 
+@import "carousel";

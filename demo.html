@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Chaordic OnSite</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Chaordic OnSite Demo</h1>		
+		<div id="chaordic-onsite-UID"></div>
+		<script type="text/javascript">
+			(function(d, s) {	    	
+				var js = d.createElement(s);
+				//js.src = "//api.chaordicsystems.com/widgets/chaordic-onsite-ID.js";
+				js.src = "widgets/chaordic-onsite-UID.js";
+				var chjs = d.getElementsByTagName(s)[0];
+				chjs.parentNode.insertBefore(js, chjs);
+			}(document, 'script'));
+		</script>
+		
+		<p><small>view source at: <a href="https://github.com/ruancarvalho/chaordic-challenge">github.com/ruancarvalho/chaordic-challenge</a> </small></p>
+</body>
+</html>

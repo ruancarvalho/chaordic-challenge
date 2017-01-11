@@ -1,0 +1,50 @@
+.hidden {
+	display: none;
+}
+
+.carousel {
+	position: relative;
+	width: 100%;
+	z-index: 10;
+
+	.slide {
+		transition: margin-left 0.3s linear;
+	}
+
+  	.carousel-control {
+		background: url('../img/carousel-controls.png') no-repeat;
+		display: block;
+		height: 34px;
+		margin-top: 60px;
+		position: absolute;
+		top: 0;
+		width: 17px;
+		z-index: 10;
+		display: block;
+		overflow: hidden;
+		text-indent: 100%;
+		white-space: nowrap;
+	}
+	.left {
+		background-position: 0 0;
+		left: 0;
+		margin-left: 8px;
+		&:hover {
+			background-position: 0 -34px;
+		}
+	}
+  
+	.right {
+		background-position: -17px 0;
+		margin-right: 13px;
+		right: 0;
+		&:hover {
+			background-position: -17px -34px;
+		}
+	}
+  
+	ul {
+		margin: 0 30px;		
+	}
+  
+}

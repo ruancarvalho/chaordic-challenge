@@ -189,7 +189,7 @@ a {
   overflow: hidden;
   padding-bottom: 30px;
   position: relative;
-  width: 100%; }
+  width: 940px; }
   .chaordic-onsite h3 {
     color: #0066A2;
     font-family: Tahoma, Verdana, Arial, sans-serif;
@@ -230,36 +230,79 @@ a {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: normal; }
+    .chaordic-product p.chaordic-product-oldprice {
+      color: #000; }
     .chaordic-product p.chaordic-product-price {
       color: #CC0000;
       font-size: 12px;
-      font-family: Verdana, Arial, "sans-serif"; }
+      font-family: Verdana, Arial, "sans-serif";
+      line-height: 1em; }
       .chaordic-product p.chaordic-product-price strong {
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 900; }
     .chaordic-product p.chaordic-product-info {
       color: #CC0000;
       font-weight: bolder; }
+      .chaordic-product p.chaordic-product-info span {
+        font-weight: normal; }
 
 .chaordic-reference .chaordic-product {
-  content: '';
-  border-right: 1px solid #eee; }
+  border-right: 1px solid #eee;
+  padding: 0 10px; }
 
-.chaordic-recommendation ul {
-  list-style: none;
-  margin: 0;
-  overflow: hidden;
-  padding: 10px 0; }
-  .chaordic-recommendation ul li {
-    float: left;
-    padding: 0px;
-    transition: background 0.8s ease-in-out;
-    vertical-align: top;
-    zoom: 1;
-    *display: inline; }
-    .chaordic-recommendation ul li:hover {
-      background: linear-gradient(#D7EAF9, #FCFDFF); }
-      .chaordic-recommendation ul li:hover .product-thumbnail {
-        border: 2px solid #BDD0E0; }
+.chaordic-recommendation {
+  width: 100%; }
+  .chaordic-recommendation ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0; }
+    .chaordic-recommendation ul li {
+      float: left;
+      padding: 0px;
+      transition: background 0.8s ease-in-out;
+      vertical-align: top;
+      zoom: 1;
+      *display: inline; }
+      .chaordic-recommendation ul li:hover {
+        background: linear-gradient(#D7EAF9, #FCFDFF); }
+        .chaordic-recommendation ul li:hover .chaordic-product-thumb {
+          border: 2px solid #BDD0E0; }
+
+.hidden {
+  display: none; }
+
+.carousel {
+  position: relative;
+  width: 100%;
+  z-index: 10; }
+  .carousel .slide {
+    transition: margin-left 0.3s linear; }
+  .carousel .carousel-control {
+    background: url("../img/carousel-controls.png") no-repeat;
+    display: block;
+    height: 34px;
+    margin-top: 60px;
+    position: absolute;
+    top: 0;
+    width: 17px;
+    z-index: 10;
+    display: block;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap; }
+  .carousel .left {
+    background-position: 0 0;
+    left: 0;
+    margin-left: 8px; }
+    .carousel .left:hover {
+      background-position: 0 -34px; }
+  .carousel .right {
+    background-position: -17px 0;
+    margin-right: 13px;
+    right: 0; }
+    .carousel .right:hover {
+      background-position: -17px -34px; }
+  .carousel ul {
+    margin: 0 30px; }
 
 /*# sourceMappingURL=chaordic-onsite.css.map */
