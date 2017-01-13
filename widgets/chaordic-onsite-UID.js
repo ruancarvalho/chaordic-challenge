@@ -144,12 +144,16 @@ ONSITE.createCarousel = function() {
 
 ONSITE.createCarouselControl = function(type, text) {
 
-	var control = document.createElement('a'); 
-	control.className='carousel-control ' + type;
+	var wrapper = document.createElement('div');
+	wrapper.className='carousel-control ' + type;
+
+	var control = document.createElement('a');
 	control.href='#';
 	control.text=text;
 
-	return control;
+	wrapper.appendChild(control);
+
+	return wrapper;
 }
 
 function fetchStyles(url) {

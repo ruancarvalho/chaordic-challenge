@@ -14,8 +14,8 @@ ChaordicCarousel = (function(){
   var plugin = {
     init: function () {
       this.carousel = document.querySelector('.carousel-inner');
-      this.btnPrev = document.querySelector('.left');
-      this.btnNext = document.querySelector('.right');
+      this.btnPrev = document.querySelector('.left a');
+      this.btnNext = document.querySelector('.right a');
       this.itensCount = parseInt(this.carousel.children.length +1, 10);
       this.carouselWidth = this.itensCount * defaults.widthItem;
       this.events();
