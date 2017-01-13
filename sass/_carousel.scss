@@ -4,17 +4,16 @@
 
 .carousel {
 	position: relative;
-	width: 100%;
+	width: 615px;
 	z-index: 10;
-
-	.slide {
-		transition: margin-left 0.3s linear;
-	}
+    overflow: hidden;
+    padding: 0 30px;
 
   	.carousel-control {
 		background: url('../img/carousel-controls.png') no-repeat;
 		display: block;
 		height: 34px;
+		margin-bottom: 180px;
 		margin-top: 60px;
 		position: absolute;
 		top: 0;
@@ -36,15 +35,24 @@
   
 	.right {
 		background-position: -17px 0;
-		margin-right: 13px;
-		right: 0;
+		margin-right: 17px;
+    	right: 0px;		
 		&:hover {
 			background-position: -17px -34px;
 		}
 	}
   
 	ul {
-		margin: 0 30px;		
+		margin: 0;
+		transition: margin-left 0.3s linear;	
+		 overflow: hidden;
 	}
+	li {
+	    margin-right: 5px;
+	    &:last-child {
+	      margin-right: 0;
+	    }
+  	}
+	
   
 }

@@ -1,67 +1,88 @@
+var ChaordicCarousel = window.ChaordicCarousel || {};
+
 ChaordicCarousel = (function(){
+  
+  'use strict';
+  
+  var defaults = {
+    widthItem: 175,
+    itemPerPage: 1,
+    interval: 200,
+    itemView: 4
+  };
+  
+  var plugin = {
+    init: function () {
+      this.carousel = document.querySelector('.carousel-inner');
+      this.btnPrev = document.querySelector('.left');
+      this.btnNext = document.querySelector('.right');
+      this.itensCount = parseInt(this.carousel.children.length +1, 10);
+      this.carouselWidth = this.itensCount * defaults.widthItem;
+      this.events();
 
-  var carousel = document.querySelector('.carousel');
-  var next = carousel.querySelector('.right');
-  var prev = carousel.querySelector('.left');
+      this.carousel.style.width = this.carouselWidth + 'px';
+    },
 
-  var list = carousel.querySelector('.carousel-inner');
-  var items = list.querySelectorAll('li');
+    events: function () {
+      this.btnPrev.addEventListener('click', this.prevItem.bind(this), defaults.interval);
+      this.btnNext.addEventListener('click', this.nextItem.bind(this), defaults.interval);
+    },
 
-  var visible = 4;
-  var limit = visible -1;
-  var amount = items.length;
+    prevItem: function (evt) {
 
-  function init() {
+      var marginLeft = this.directionControl('prev');
+      if (marginLeft > 0) {
+        this.carousel.style.marginLeft = 0 + 'px';
+        return;
+      }
 
-  	for (var i = visible; i < amount; i++) {
-  		items[i].classList.add('hidden');
-  	}
-  }
+      this.carousel.style.marginLeft = marginLeft + 'px';
 
-  function move(direction) {
+      evt.preventDefault();
+      evt.stopPropagation();
 
-  	var first, last;
-  	var slide;
+      evt.target.hidden = false;
+    },
 
-  	if (direction === -1) { 
+    nextItem: function (evt) {
 
-  		last = list.lastChild;
+      console.log(evt);
 
-  		slide = last.cloneNode(true);
-  		list.removeChild(list.lastChild);
+      var marginLeft = this.directionControl('next');
+      var maxWidth = (this.carouselWidth - defaults.itemView * defaults.widthItem) * -1;
+      if (marginLeft < maxWidth) {
+        this.carousel.style.marginLeft = maxWidth + 'px';
+        return;
+      }
+      this.carousel.style.marginLeft = marginLeft + 'px';
+      evt.preventDefault();
+      evt.stopPropagation();
+    },
 
-    	slide.classList.remove('hidden');
-  		list.insertBefore(slide, list.firstChild);
+    getCurrentStyle: function () {
+      return this.carousel.currentStyle || window.getComputedStyle(this.carousel);
+    },
 
-  		slide = list.childNodes[visible];
-  		slide.classList.add('hidden');
+    getMarginLeft: function () {
+      var style = this.getCurrentStyle();
+      return parseInt(style.marginLeft, 10);  
+    },
+
+    directionControl: function (direction) {
+      if (direction === 'next') {
+        return (this.getMarginLeft() - this.totalItems());
+      } else {
+        return (this.getMarginLeft() + this.totalItems());
+      }
+    },
+    totalItems: function () {
+      return defaults.itemPerPage * defaults.widthItem;
     }
 
-    if (direction === 1) {
+  };
 
-    	first = list.firstChild;
-
-  		slide = first.cloneNode(true);
-  		list.removeChild(list.firstChild);
-
-    	slide.classList.add('hidden');
-  		list.appendChild(slide);
-
-  		slide = list.childNodes[limit];
-  		slide.classList.remove('hidden');
-    }
-  }
-
-  // add event handlers to buttons
-  next.addEventListener('click', function(ev) {
-    ev.preventDefault();
-    move(1);
-  });
-  prev.addEventListener('click', function(ev) {
-  	ev.preventDefault();
-    move(-1);
-  });
-
-  init();
-
+  return plugin;
+  
 })();
+
+ChaordicCarousel.init();

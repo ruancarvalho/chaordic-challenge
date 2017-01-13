@@ -4,7 +4,7 @@
  * e da lista de produtos recomendados com paginação de um serviço remoto.
  */
 
-var serviceURL = "https://roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
+var serviceURL = "//roberval.chaordicsystems.com/challenge/challenge.json?callback=X";
 var stylesURL = "css/chaordic-onsite.css";
 var carouselURL = "js/chaordic-carousel.js"
 
