@@ -106,7 +106,7 @@ ONSITE.createProduct = function(product) {
 
 		var name = document.createElement('p');
 		name.className = 'chaordic-product-title';
-		name.innerHTML = product.name.substring(0, 80) + '...';
+		name.innerHTML = product.name.substring(0, 75) + '...';
 
 		if (product.oldPrice != null ) {
 			var oldPrice = document.createElement('p');

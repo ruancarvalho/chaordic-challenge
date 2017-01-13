@@ -182,12 +182,12 @@ a {
 
 .chaordic-onsite {
   background: url("../img/chaordic-onsite-top.jpg") repeat-x top;
-  border-radius: 8px;
+  border-radius: 5px;
   border: 1px solid #D6E5F2;
   box-shadow: 3px 0px 2px #eee;
   display: flex;
   overflow: hidden;
-  padding-bottom: 30px;
+  padding-bottom: 27px;
   position: relative;
   width: 865px; }
   .chaordic-onsite h3 {
@@ -226,7 +226,8 @@ a {
     font-size: 11px;
     margin: 5px 10px; }
     .chaordic-product p.chaordic-product-title {
-      margin-bottom: 5px;
+      line-height: 14px;
+      margin-bottom: 7px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: normal; }
@@ -242,16 +243,22 @@ a {
         font-weight: 900; }
     .chaordic-product p.chaordic-product-info {
       color: #CC0000;
-      font-weight: bolder; }
+      font-weight: bolder;
+      line-height: 10px; }
       .chaordic-product p.chaordic-product-info span {
         font-weight: normal; }
 
+.chaordic-reference a {
+  padding: 10px 0;
+  display: block; }
 .chaordic-reference .chaordic-product {
   border-right: 1px solid #eee;
   padding: 0 10px; }
 
 .chaordic-recommendation {
   width: 100%; }
+  .chaordic-recommendation h3 {
+    padding-left: 14px; }
   .chaordic-recommendation ul {
     list-style: none;
     margin: 0;
